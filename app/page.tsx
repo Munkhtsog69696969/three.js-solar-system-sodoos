@@ -302,7 +302,7 @@ export default function Home() {
 
         camera.lookAt(0,0,0);
       }else if(cameraFollow.current!=null && cameraFollow.current!="sun"){
-        const planetMeshMap = new Map([
+        const planetMeshMap = new Map<string, THREE.Mesh>([
           ["mercury", mercury.mesh],
           ["venus", venus.mesh],
           ["earth", earth.mesh],
@@ -312,15 +312,22 @@ export default function Home() {
           ["saturn", saturn.sphereMesh],
           ["uranus", uranus.sphereMesh],
           ["neptune", neptune.mesh],
-          ["blackhole",blackHole.blackHoleMesh]
-        ]);        
-
-        const selectedPlanetMesh:THREE.Mesh | undefined = planetMeshMap.get(cameraFollow.current)
-
-        const desiredCameraPos:THREE.Vector3 | undefined = selectedPlanetMesh?.position.clone().add(cameraOffset);
-
-        camera.position.lerp(desiredCameraPos, 0.1);
-        camera.lookAt(selectedPlanetMesh?.position);
+          ["blackhole", blackHole.blackHoleMesh],
+        ]);
+        
+        const selectedPlanetMesh = planetMeshMap.get(cameraFollow.current);
+        
+        if (selectedPlanetMesh) {
+          const desiredCameraPos = selectedPlanetMesh.position.clone().add(cameraOffset);
+        
+          // Ensure desiredCameraPos is used safely
+          if (desiredCameraPos) {
+            camera.position.lerp(desiredCameraPos, 0.1);
+            camera.lookAt(selectedPlanetMesh.position);
+          }
+        } else {
+          console.warn("Selected planet mesh not found in map");
+        }
       }
 
       const delta = clock.getElapsedTime();
