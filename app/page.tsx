@@ -16,7 +16,7 @@ export default function Home() {
 
   // let cameraFollow:any=null
   const cameraFollow = useRef<string | null>(null);
-  const [planetInfoShow,setPlanetInfoShow]=useState<any>(null)
+  const [planetInfoShow,setPlanetInfoShow]=useState<string | null>(null)
 
   const [showLabel,setShowLabel]=useState(true);
   const [showCreator,setShowCreator]=useState(false)
