@@ -1,4 +1,3 @@
-import { title } from "process";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -14,18 +13,18 @@ export default {
       },
       keyframes: {
         fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
+          from: { opacity: "0" },
+          to: { opacity: "1" },
         },
         fadeOut: {
-          from: { opacity: 1 },
-          to: { opacity: 0 },
+          from: { opacity: "1" },
+          to: { opacity: "0" },
         },
       },
-      fontFamily:{
-        title:["Oswald", "sans-serif"],
+      fontFamily: {
+        title: ["Oswald", "sans-serif"],
       },
-      backgroundImage:{
+      backgroundImage: {
         'custom-gradient': 'linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)',
       },
       colors: {
