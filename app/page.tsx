@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Sphere from "@/components/Sphere";
 import RingedSphere from "@/components/SphereRinged";
 import Asteroid from "@/components/Asteroid";
@@ -15,13 +15,13 @@ export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
   // let cameraFollow:any=null
-  const cameraFollow=useRef<any>(null)
+  const cameraFollow = useRef<string | null>(null);
   const [planetInfoShow,setPlanetInfoShow]=useState<any>(null)
 
   const [showLabel,setShowLabel]=useState(true);
   const [showCreator,setShowCreator]=useState(false)
 
-  let clock = new THREE.Clock();
+  const clock = new THREE.Clock();
 
   useEffect(() => {
     setTimeout(() => {
@@ -155,7 +155,7 @@ export default function Home() {
       bumpMapPath: "/",
     });
 
-    let asteroids = [];
+    const asteroids:Asteroid[] = [];
     const asteroidCount = 100;
 
     for (let i = 0; i < asteroidCount; i++) {
@@ -317,7 +317,7 @@ export default function Home() {
 
         const selectedPlanetMesh:THREE.Mesh = planetMeshMap.get(cameraFollow.current)
 
-        const desiredCameraPos:any = selectedPlanetMesh?.position.clone().add(cameraOffset);
+        const desiredCameraPos:THREE.Vector3 | undefined = selectedPlanetMesh?.position.clone().add(cameraOffset);
 
         camera.position.lerp(desiredCameraPos, 0.1);
         camera.lookAt(selectedPlanetMesh?.position);
