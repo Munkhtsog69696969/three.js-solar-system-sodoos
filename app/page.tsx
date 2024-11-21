@@ -315,7 +315,7 @@ export default function Home() {
           ["blackhole",blackHole.blackHoleMesh]
         ]);        
 
-        const selectedPlanetMesh:THREE.Mesh = planetMeshMap.get(cameraFollow.current)
+        const selectedPlanetMesh:THREE.Mesh | undefined = planetMeshMap.get(cameraFollow.current)
 
         const desiredCameraPos:THREE.Vector3 | undefined = selectedPlanetMesh?.position.clone().add(cameraOffset);
 
