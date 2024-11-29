@@ -355,7 +355,7 @@ export default function Home() {
         )}
         {showCreator && (
           <div className="absolute font-bold text-[120px] text-white animate-fadeInOut">
-            Created by Munkhtsog
+            Created by Munkhtsog And Sodbayar
           </div>
         )}
         <div className="absolute top-0 flex flex-row gap-6">
